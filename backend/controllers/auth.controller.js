@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import User from "../db/models/user.model.js";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
+import { convertBufferToBase64 } from "../utils/imageUtils.js";
 
 
 export const signup = async (req, res) => {
@@ -72,7 +73,7 @@ export const login = async (req, res) => {
         _id: user._id,
         fullName: user.fullName,
         username: user.username,
-        profilePic: user.profilePic
+        profilePic: convertBufferToBase64(user.profilePic.data, user.profilePic.contentType)
     });
   } catch (error) {
     console.log("Error in login controller", error.message);
