@@ -8,7 +8,7 @@ const useSignup = () => {
   const { setAuthUser } = useAuthContext();
 
   const signup = async (inputs) => {
-    const { fullName, username, password, confirmPassword, gender } = inputs;
+    const { fullName, username, password, confirmPassword, gender, profilePic } = inputs;
 
     const success = handleInputErrors({
       fullName,
@@ -16,18 +16,25 @@ const useSignup = () => {
       password,
       confirmPassword,
       gender,
+      profilePic
     });
     if (!success) return;
 
     setLoading(true);
 
     try {
-      const res = await axios.post("/api/auth/signup", {
-        fullName,
-        username,
-        password,
-        confirmPassword,
-        gender,
+      const formData = new FormData();
+      formData.append("fullName", fullName);
+      formData.append("username", username);
+      formData.append("password", password);
+      formData.append("confirmPassword", confirmPassword);
+      formData.append("gender", gender);
+      formData.append("profilePic", profilePic);
+      
+      const res = await axios.post("/api/auth/signup",formData,{
+        headers: {
+          "Content-Type":"multipart/form-data"
+        }
       });
 
       console.log("Sign-up successful:", res.data);
@@ -58,9 +65,10 @@ function handleInputErrors({
   username,
   password,
   confirmPassword,
-  gender,
+  gender, 
+  profilePic
 }) {
-  if (!fullName || !username || !password || !confirmPassword || !gender) {
+  if (!fullName || !username || !password || !confirmPassword || !gender || !profilePic) {
     toast.error("Please fill in all fields");
     return false;
   }
