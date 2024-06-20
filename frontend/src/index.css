@@ -3,10 +3,18 @@
 @tailwind utilities;
 
 body{
-  background:  linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("/bg.png");
+  background:  linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("/bg5.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+:root{
+  --clr-bitterseet:#F07167;
+  --clr-light-orange:#FED9B7;
+  --clr-light-yellow:#FDFCDC;
+  --clr-verdigris:#00AFB9;
+  --clr-cerulean:#0081A7;
 }
 
 /*Custom scroll bar*/
@@ -53,3 +61,42 @@ body{
     transform: translate3d(4px, 0, 0);
   }
 }
+
+/* ========== custom style ============= */
+.w-23{
+  width: 23%;
+}
+.w-77{
+  width: 77%;
+}
+
+@media (min-width:1450px){
+  .w-23{
+    width: 20%;
+  }
+  .w-77{
+    width: 80%;
+  }
+}
+
+/* ========================================== */
+
+/* ================= Hover =============== */
+.b{
+  background: var(--clr-cerulean);
+  color: var(--clr-light-yellow);
+}
+
+.b:hover{
+  background: var(--clr-light-yellow);
+  color: var(--clr-cerulean);
+}
+
+/* ========================================*/
+
+/* colors F07167(pink), FED9B7(light orange), FDFCDC(light yellow), 00AFB9(verdigris), 0081A7(Cerulean) */
+/* style={{ color: "var(--clr-cerulean)" }}
+style={{ color: "var(--clr-light-orange)" }}
+style={{ color: "var(--clr-light-yellow)" }}
+style={{ color: "var(--clr-verdigris)" }}
+style={{ color: "var(--clr-bitterseet)" }} */
